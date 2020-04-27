@@ -1,3 +1,10 @@
+/*
+    Der er udelukkende blevet udviklet i en .js fil og det er bare for at simplificere noget af arbejdet.
+    Hvis projektet var større ville det selvfølgelig give mening at have en .js fil til hver side der var (hjem, find bruger, opret bruger, rediger bruger, mm)
+    Evt. havde et bibliotek som Angular, VUE eller andet hjulpet til meget her. Specielt når det kommer til single page applikationer.
+ */
+
+
 //HTML Dokumentet er loaded og tingene er klar til at blive brugt
 $( document ).ready(function() {
     //Vælger alle de DIVs som skal stå for de forskellige sider
@@ -12,12 +19,19 @@ $( document ).ready(function() {
     var btn_go_user_create = $("#btn_go_user_create");
     var btn_go_user_edit = $("#btn_go_user_edit");
 
+    //Loading div der ligger i bunden af index.html
+    var loading = $("#loading");
+
+    //Base api urlen
+    var api_url = "api/";
+
     var init = function () {
         initEvents();
 
         //Start siden er page_home
         page_home.show();
-    }
+        home();
+    };
 
     //Funktioner
     var hidePages = function(){
@@ -27,24 +41,69 @@ $( document ).ready(function() {
         page_user_edit.hide();
     };
 
+    var showError = function(){
+        alert("Data kunne ikke hentes fra backend!");
+    };
+
     //Events
     var initEvents = function(){
         btn_go_home.click(function(){
             hidePages();
             page_home.show();
+            home();
         });
         btn_go_user_find.click(function(){
             hidePages();
             page_user_find.show();
+            user_find();
         });
         btn_go_user_create.click(function(){
             hidePages();
             page_user_create.show();
+            user_create();
         });
         btn_go_user_edit.click(function(){
             hidePages();
             page_user_edit.show();
+            user_edit();
         });
+    };
+
+    //Scripts for hver side
+    var home = function(){
+        //Der sker ikke rigtigt noget her på hjemme siden
+    };
+
+    var user_find = function(){
+        var user = $("#user");
+        var input_username = $("#input_username");
+        var btn_user_search = $("#btn_user_search");
+
+        var api_user_find = function(){
+            loading.show();
+            $.ajax({
+                url: api_url + "bruger/" + input_username.val(),
+                type: "GET"
+            }).done(function(resp) {
+                user.html(resp);
+            }).fail(function(){
+                showError();
+            }).always(function(){
+                loading.hide();
+            });
+        };
+
+        btn_user_search.click(function () {
+            api_user_find();
+        });
+    };
+
+    var user_create = function(){
+
+    };
+
+    var user_edit = function(){
+
     };
 
     //Inititialize scriptet

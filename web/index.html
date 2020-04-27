@@ -4,38 +4,65 @@
     <meta charset="UTF-8">
     <title>CDIO2 - Bruger administatration</title>
 
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- https://gist.github.com/DavidWells/18e73022e723037a50d6 RESET CSS SÅ BROWSERER OPFØRER SIG SÅ ENS SOM MULIGT -->
+    <link rel="stylesheet" type="text/css" href="external/reset.css" />
 
+    <!-- https://jquery.com/ jQuery bibliotek til javascript som simplificerer blandt andet Ajax kald -->
     <script type="text/javascript" src ="external/jquery-3.5.0.js"></script>
 
+    <!-- Vores udviklede stylesheet og scripts -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
     <script type="text/javascript" src ="script/script.js"></script>
-
 </head>
 <body>
 
 <div class="container">
+
     <div class="topbar">
+
         <div id="btn_go_home">Hjem</div>
         <div id="btn_go_user_find">Find Bruger</div>
         <div id="btn_go_user_create">Opret Bruger</div>
         <div id="btn_go_user_edit">Rediger Bruger </div>
+
     </div>
 
     <div class="content">
+
         <div id="home" style="display: none;">
             I top baren kan der vælges mellem Find Bruger, Opret Bruger, Opdater Bruger
         </div>
+
         <div id="user_find" style="display: none;">
-            Find bruger her
+            <div class="leftContent">
+                <b>Find bruger her</b>
+                <div style="margin: 10px;">
+                    <label for="input_username">Brugernavn:</label> <input id="input_username" type="text" /><br />
+                    <button id="btn_user_search" style="float:right;">Søg</button>
+                </div>
+            </div>
+            <div class="rightContent">
+                <div id="user"></div>
+            </div>
         </div>
+
         <div id="user_create" style="display: none;">
             Opret en bruger her
         </div>
+
         <div id="user_edit" style="display: none;">
             Opdater en bruger her
         </div>
+
     </div>
 
+</div>
+
+<div class="loading" id="loading" style="display: none">
+    <div class="spinnerContainer">
+        Indlæser...
+        <div class="spinner"></div>
+    </div>
 </div>
 
 </body>
