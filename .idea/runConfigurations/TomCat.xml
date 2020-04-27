@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="TomCat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.54" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="12">
+  <configuration default="false" name="TomCat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.54" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="12.0.2">
     <option name="UPDATING_POLICY" value="restart-server" />
     <deployment>
       <artifact name="CDIO2">

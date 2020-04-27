@@ -2,17 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> CDIO2 - Bruger administatration</title>
+    <title>CDIO2 - Bruger administatration</title>
+
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
-    <!-- jquery -->
-    <script type="text/javascript" src ="jquery-3.5.0.js"></script>
-    <script type="text/javascript">
-        alert("Bingo");
-    </script>
+    <script type="text/javascript" src ="external/jquery-3.5.0.js"></script>
+
+    <script type="text/javascript" src ="script/script.js"></script>
 
 </head>
 <body>
-CDIO2 - lets go
+
+<div class="container">
+    <div class="topbar">
+        <div id="btn_go_home">Hjem</div>
+        <div id="btn_go_user_find">Find Bruger</div>
+        <div id="btn_go_user_create">Opret Bruger</div>
+        <div id="btn_go_user_edit">Rediger Bruger </div>
+    </div>
+
+    <div class="content">
+        <div id="home" style="display: none;">
+            I top baren kan der vælges mellem Find Bruger, Opret Bruger, Opdater Bruger
+        </div>
+        <div id="user_find" style="display: none;">
+            Find bruger her
+        </div>
+        <div id="user_create" style="display: none;">
+            Opret en bruger her
+        </div>
+        <div id="user_edit" style="display: none;">
+            Opdater en bruger her
+        </div>
+    </div>
+
+</div>
+
 </body>
 </html>

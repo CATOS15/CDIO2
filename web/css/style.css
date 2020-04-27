@@ -1,1 +1,41 @@
 /* ALLE STYLES KOMMER TIL AT LIGGE HER */
+html{
+    height: 100%;
+    width: 100%;
+    font-family: New Century Schoolbook, serif;
+}
+body{
+    height: 100%;
+    width: 100%;
+    margin:0;
+}
+.container{
+    height: 100%;
+    width: 100%;
+    background: #f4f4f4;
+    margin:0 auto;
+    border-radius: 5px;
+}
+.topbar{
+    height: 40px;
+    width: 100%;
+    background: #090e92;
+}
+.topbar > div{
+    border-radius: 50px;
+    float: left;
+    color: white;
+    padding: 10px;
+    margin-left: 15px;
+    text-align: center;
+    font-weight: 600;
+}
+.topbar > div:hover{
+    text-decoration: underline;
+    cursor:pointer;
+}
+.content{
+    height: calc(100% - 140px);
+    width: 100%;
+    padding: 10px 25px;
+}
