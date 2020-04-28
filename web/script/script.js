@@ -75,17 +75,18 @@ $( document ).ready(function() {
     };
 
     var user_find = function(){
-        var user = $("#user");
+        var response_user = $("#response_user");
         var input_username = $("#input_username");
         var btn_user_search = $("#btn_user_search");
 
         var api_user_find = function(){
             loading.show();
+
             $.ajax({
                 url: api_url + "bruger/" + input_username.val(),
                 type: "GET"
             }).done(function(resp) {
-                user.html(resp);
+                response_user.html(resp);
             }).fail(function(){
                 showError();
             }).always(function(){
