@@ -1,9 +1,16 @@
-package backend;
+package Controller;
+
+import Logic.Mapper;
+import Model.DAO.IUserDAO;
+import Model.DAO.UserDAO_3_Database;
+import Model.DTO.UserDTO;
+import org.json.JSONObject;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import java.util.HashMap;
 
 @Path("/bruger")
 public class Bruger {
@@ -30,10 +37,13 @@ public class Bruger {
     }
 
     @POST
-    @Path("/")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public String createUser(JSONUser jsonUser) {
-        return "Kat";
+    public String createUser(String JSON_userDTO) {
+        try{
+            UserDTO userDTO = Mapper.mapUserDTO(JSON_userDTO);
+            return Mapper.mapUserDTO(userDTO);
+        }
+        catch (Exception e){
+            return "Fejl i backend: " + e.toString();
+        }
     }
-
 }

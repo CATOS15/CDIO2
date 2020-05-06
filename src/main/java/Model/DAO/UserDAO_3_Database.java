@@ -1,4 +1,6 @@
-package backend;
+package Model.DAO;
+
+import Model.DTO.UserDTO;
 
 import java.sql.*;
 import java.util.ArrayList;

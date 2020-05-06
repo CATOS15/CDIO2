@@ -45,8 +45,12 @@ $( document ).ready(function() {
 
     };
 
-    var showError = function(){
-        alert("Data kunne ikke hentes fra backend!");
+    var showError = function(resp){
+        if(resp && resp.responseText){
+            alert(resp.responseText);
+        }else{
+            alert("Data kunne ikke hentes fra backend!");
+        }
     };
 
     //Events
@@ -118,24 +122,35 @@ $( document ).ready(function() {
         var btn_user_create = $("#btn_user_create");
 
         var api_create_user = function(){
-            loading.show();
-            var object = {
-                name : input_username.val(),
+            //Det er vigtigt at de keys som er skrevet her matcher Mapper.java!
+            var DTO = {
+                username : input_username.val(),
                 password : input_password.val(),
                 cpr : input_cpr.val(),
-                role : input_role.val()
+                roles : input_role.val()
             };
-
+            for(var key in DTO){
+                if(!DTO[key]){
+                    alert("Udfyld venligst " + key);
+                    return;
+                }
+            }
+            loading.show();
             $.ajax({
-                url: api_url + "bruger/",
+                url: api_url + "bruger",
                 type: "POST",
-                data: JSON.stringify(object),
-                contentType: "application/json",
-                dataType: "json",
+                data: JSON.stringify(DTO) //Bliver blot sendt som en string og så konventeret i backend
             }).done(function(resp) {
-                response_create_user.html(resp);
-            }).fail(function(){
-                showError();
+                var data = JSON.parse(resp);
+                var html = "<b>Dataen er blevet modtaget i backend og sendt tilbage igen: </b><br />";
+                html += "USERNAME: " + data.username + "<br />";
+                html += "PASSWORD: " + data.password + "<br />";
+                html += "CPR: " + data.cpr + "<br />";
+                html += "ROLLER: " + data.roles + "<br />";
+
+                response_create_user.html(html);
+            }).fail(function(resp){
+                showError(resp);
             }).always(function(){
                 loading.hide();
             });
@@ -153,16 +168,14 @@ $( document ).ready(function() {
         var input_cpr = $("#editCPR");
         var input_role = $("#editRole");
         var btn_user_create = $("#btn_user_update");
-
-
-
     };
-    var user_delete = function(){
 
+    var user_delete = function(){
         // var input_delete = $("#deleteName");
         var input_name = $("#deleteName");
         var input_ID = $("#deleteID");
     };
+
     //Inititialize scriptet
     init();
 });

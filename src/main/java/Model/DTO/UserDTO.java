@@ -1,14 +1,11 @@
-package backend;
+package Model.DTO;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDTO implements Serializable{
-
-    private static final long serialVersionUID = 4545864587995944260L;
-    private int	userId;
-    private String userName;
+public class UserDTO{
+    private int	id;
+    private String username;
     private String ini;
     private List<String> roles;
     private String cpr;
@@ -19,16 +16,16 @@ public class UserDTO implements Serializable{
     }
 
     public int getUserId() {
-        return userId;
+        return id;
     }
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserId(int id) {
+        this.id = id;
     }
     public String getUserName() {
-        return userName;
+        return username;
     }
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserName(String username) {
+        this.username = username;
     }
     public String getIni() {
         return ini;
@@ -63,6 +60,6 @@ public class UserDTO implements Serializable{
 
     @Override
     public String toString() {
-        return "UserDTO [userId=" + userId + ", userName=" + userName + ", roles=" + roles + "]";
+        return "UserDTO [userId=" + id + ", userName=" + username + ", roles=" + roles + "]";
     }
 }

@@ -43,6 +43,7 @@
           <element id="library" level="project" name="Maven: org.glassfish.jersey.media:jersey-media-jaxb:2.29.1" />
           <element id="library" level="project" name="Maven: org.javassist:javassist:3.22.0-CR2" />
           <element id="library" level="project" name="mysql:mysql-connector-java:8.0.19" />
+          <element id="library" level="project" name="Maven: org.json:json:20190722" />
         </element>
       </element>
     </root>

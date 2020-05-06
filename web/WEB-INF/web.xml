@@ -10,7 +10,7 @@
 
         <init-param>
             <param-name>jersey.config.server.provider.packages</param-name>
-            <param-value>backend</param-value>
+            <param-value>Controller</param-value>
         </init-param>
 
         <init-param>
