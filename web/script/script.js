@@ -12,13 +12,15 @@ $( document ).ready(function() {
     var page_user_find = $("#user_find");
     var page_user_create = $("#user_create");
     var page_user_edit = $("#user_edit");
+    var page_user_delete = $("#user_delete");
+
 
     //Vælger alle de DIVs som er knappen for at skifte side
     var btn_go_home = $("#btn_go_home");
     var btn_go_user_find = $("#btn_go_user_find");
     var btn_go_user_create = $("#btn_go_user_create");
     var btn_go_user_edit = $("#btn_go_user_edit");
-
+    var btn_go_user_delete = $("#btn_go_user_delete");
     //Loading div der ligger i bunden af index.html
     var loading = $("#loading");
 
@@ -39,6 +41,8 @@ $( document ).ready(function() {
         page_user_find.hide();
         page_user_create.hide();
         page_user_edit.hide();
+        page_user_delete.hide();
+
     };
 
     var showError = function(){
@@ -67,12 +71,18 @@ $( document ).ready(function() {
             page_user_edit.show();
             user_edit();
         });
+        btn_go_user_delete.click(function(){
+            hidePages();
+            page_user_delete.show();
+            user_delete();
+        });
     };
 
     //Scripts for hver side
     var home = function(){
         //Der sker ikke rigtigt noget her på hjemme siden
     };
+
 
     var user_find = function(){
         var response_user = $("#response_user");
@@ -104,6 +114,9 @@ $( document ).ready(function() {
     };
 
     var user_edit = function(){
+
+    };
+    var user_delete = function(){
 
     };
 
