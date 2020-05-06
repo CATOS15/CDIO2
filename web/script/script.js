@@ -115,7 +115,7 @@ $( document ).ready(function() {
         var input_password = $("#createPassword");
         var input_cpr = $("#createCPR");
         var input_role = $("#createRole");
-        var btn_user_create = $("#submitNewUser");
+        var btn_user_create = $("#btn_user_create");
 
         var api_create_user = function(){
             loading.show();
