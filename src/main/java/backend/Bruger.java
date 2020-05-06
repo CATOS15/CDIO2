@@ -3,12 +3,34 @@ package backend;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import java.sql.ResultSet;
 
 @Path("/bruger")
 public class Bruger {
+    public static IUserDAO iUserDAO = new UserDAO_3_Database();
+
     @GET
     @Path("{username}")
     public String getBruger(@PathParam("username") String username) {
-        return "(mangler at blive implementeret) Du FANDT: " + username;
+        try {
+            UserDTO user = iUserDAO.getUser(username);
+            return "Du FANDT: " + ((user != null) ? user : "Ingen bruger");
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
+
+    @GET
+    @Path("{username}")
+    public String createUser(@PathParam("username") String username) {
+        try {
+            UserDTO user = iUserDAO.getUser(username);
+            return "Du FANDT: " + ((user != null) ? user : "Ingen bruger");
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
