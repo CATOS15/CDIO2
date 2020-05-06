@@ -147,10 +147,21 @@ $( document ).ready(function() {
     };
 
     var user_edit = function(){
+        // var response_edit_user = $("#response_edit_user");
+        var input_Edit = $("#editName");
+        var input_password = $("#editPassword");
+        var input_cpr = $("#editCPR");
+        var input_role = $("#editRole");
+        var btn_user_create = $("#btn_user_update");
+
+
 
     };
     var user_delete = function(){
 
+        // var input_delete = $("#deleteName");
+        var input_name = $("#deleteName");
+        var input_ID = $("#deleteID");
     };
     //Inititialize scriptet
     init();
