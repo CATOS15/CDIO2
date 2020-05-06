@@ -152,7 +152,6 @@ $( document ).ready(function() {
     var user_delete = function(){
 
     };
-
     //Inititialize scriptet
     init();
 });
