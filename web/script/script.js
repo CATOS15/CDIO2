@@ -110,7 +110,40 @@ $( document ).ready(function() {
     };
 
     var user_create = function(){
+        var response_create_user = $("#response_create_user");
+        var input_username = $("#createName");
+        var input_password = $("#createPassword");
+        var input_cpr = $("#createCPR");
+        var input_role = $("#createRole");
+        var btn_user_create = $("#submitNewUser");
 
+        var api_create_user = function(){
+            loading.show();
+            var object = {
+                name : input_username.val(),
+                password : input_password.val(),
+                cpr : input_cpr.val(),
+                role : input_role.val()
+            };
+
+            $.ajax({
+                contentType: "application/json",
+                url: api_url + "bruger/",
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify(object)
+            }).done(function(resp) {
+                response_create_user.html(resp);
+            }).fail(function(){
+                showError();
+            }).always(function(){
+                loading.hide();
+            });
+        };
+
+        btn_user_create.click(function () {
+            api_create_user();
+        })
     };
 
     var user_edit = function(){
