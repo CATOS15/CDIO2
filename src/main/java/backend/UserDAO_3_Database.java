@@ -7,7 +7,7 @@ import java.util.List;
 public class UserDAO_3_Database implements IUserDAO {
     private Connection con;
 
-    public UserDAO_3_Database(){
+    public UserDAO_3_Database() throws SQLException, ClassNotFoundException {
         connectToSql();
     }
 
@@ -112,14 +112,9 @@ public class UserDAO_3_Database implements IUserDAO {
         }
     }
 
-    private void connectToSql() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/userdao3", "root", "kagemand123");
-        } catch (SQLException | ClassNotFoundException sqlException) {
-            System.out.println(sqlException);
-            sqlException.printStackTrace();
-        }
+    private void connectToSql() throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/userdao3?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "kagemand123");
     }
 
     private ResultSet executeSelect(String statement) throws SQLException{

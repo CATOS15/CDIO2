@@ -3,10 +3,19 @@ package backend;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @Path("/bruger")
 public class Bruger {
-    public static IUserDAO iUserDAO = new UserDAO_3_Database();
+    private static IUserDAO iUserDAO;
+    static {
+        try {
+            iUserDAO = new UserDAO_3_Database();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            System.out.println(e);
+        }
+    }
 
     @GET
     @Path("{username}")
