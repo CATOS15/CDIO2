@@ -22,7 +22,7 @@ public class UserDAO_3_Database implements IUserDAO {
         return null;
     }
 
-    public UserDTO getUser(String username){
+    public UserDTO getUser(String username) {
         try{
             ResultSet userResultSet = executeSelect("SELECT * FROM users WHERE username='" + username + "';");
             if(userResultSet.next()) return getUserDB(userResultSet);
@@ -112,7 +112,6 @@ public class UserDAO_3_Database implements IUserDAO {
         }
     }
 
-
     private void connectToSql() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -122,6 +121,7 @@ public class UserDAO_3_Database implements IUserDAO {
             sqlException.printStackTrace();
         }
     }
+
     private ResultSet executeSelect(String statement) throws SQLException{
         Statement stmt = con.createStatement();
         return stmt.executeQuery(statement);
