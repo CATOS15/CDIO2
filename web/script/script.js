@@ -127,11 +127,11 @@ $( document ).ready(function() {
             };
 
             $.ajax({
-                contentType: "application/json",
                 url: api_url + "bruger/",
                 type: "POST",
+                data: JSON.stringify(object),
+                contentType: "application/json",
                 dataType: "json",
-                data: JSON.stringify(object)
             }).done(function(resp) {
                 response_create_user.html(resp);
             }).fail(function(){
