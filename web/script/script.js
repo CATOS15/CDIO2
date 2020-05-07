@@ -24,6 +24,7 @@ $( document ).ready(function() {
     //Loading div der ligger i bunden af index.html
     var loading = $("#loading");
 
+    var roles = $("#roles span");
     //Base api urlen
     var api_url = "api/";
 
@@ -79,6 +80,12 @@ $( document ).ready(function() {
             hidePages();
             page_user_delete.show();
             user_delete();
+        });
+        roles.click(function(){
+            if( $(this).css("font-weight") !== "700")
+                $(this).css("font-weight","700");
+            else
+                $(this).css("font-weight", "400");
         });
     };
 
@@ -179,3 +186,5 @@ $( document ).ready(function() {
     //Inititialize scriptet
     init();
 });
+
+
