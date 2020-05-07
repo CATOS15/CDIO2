@@ -105,11 +105,16 @@ $( document ).ready(function() {
         var api_user_find = function(){
             loading.show();
 
+            var url = api_url + "bruger";
+            if(input_username.val()){
+                url += "/" + input_username.val();
+            }
             $.ajax({
-                url: api_url + "bruger/" + input_username.val(),
+                url: url,
                 type: "GET"
             }).done(function(resp) {
                 response_user.html(resp);
+                //TODO: FORMATTER KODEN SÅ DEN ER PÆN
             }).fail(function(){
                 showError();
             }).always(function(){
@@ -123,12 +128,25 @@ $( document ).ready(function() {
     };
 
     var user_create = function(){
-        var response_create_user = $("#response_create_user");
         var input_username = $("#createName");
         var input_password = $("#createPassword");
         var input_cpr = $("#createCPR");
-        var input_role = $("#createRole");
-        var btn_user_create = $("#btn_user_create");
+        var roller = [];
+
+        var btn_user_create = $("#btn_user_create")
+        var response_create_user = $("#response_create_user");
+
+        var roles = $("#createRole span");
+        roles.click(function () {
+            if ($(this).css("font-weight") !== "700") {
+                $(this).css("font-weight", "700");
+                roller.push($(this).text());
+            } else {
+                $(this).css("font-weight", "400");
+
+                roller.splice(roller.indexOf($(this).text()));
+            }
+        });
 
         var api_create_user = function(){
             //Det er vigtigt at de keys som er skrevet her matcher Mapper.java!
@@ -136,7 +154,7 @@ $( document ).ready(function() {
                 username : input_username.val(),
                 password : input_password.val(),
                 cpr : input_cpr.val(),
-                roles : input_role.val()
+                roles : roller
             };
             if(!checkDTO(DTO))return;
 
@@ -147,6 +165,7 @@ $( document ).ready(function() {
                 data: JSON.stringify(DTO) //Bliver blot sendt som en string og så konventeret i backend
             }).done(function(resp) {
                 response_create_user.html(resp);
+                //TODO: FORMATTER KODEN SÅ DEN ER PÆN
             }).fail(function(resp){
                 showError(resp);
             }).always(function(){
@@ -174,7 +193,6 @@ $( document ).ready(function() {
 
         var roles = $("#editRole span");
         roles.click(function () {
-
             if ($(this).css("font-weight") !== "700") {
                 $(this).css("font-weight", "700");
                 roller.push($(this).text());
@@ -183,8 +201,8 @@ $( document ).ready(function() {
 
                 roller.splice(roller.indexOf($(this).text()));
             }
-
         });
+
         var api_edit_user = function () {
             var DTO = {
                 username: input_username.val(),
@@ -201,6 +219,7 @@ $( document ).ready(function() {
                 data: JSON.stringify(DTO) //Bliver blot sendt som en string og så konventeret i backend
             }).done(function (resp) {
                 response_edit_user.html(resp);
+                //TODO: FORMATTER KODEN SÅ DEN ER PÆN
             }).fail(function (resp) {
                 showError(resp);
             }).always(function () {
@@ -225,6 +244,7 @@ $( document ).ready(function() {
                 type: "DELETE",
             }).done(function (resp) {
                 response_delete_user.html(resp);
+                //TODO: FORMATTER KODEN SÅ DEN ER PÆN
             }).fail(function (resp) {
                 showError(resp);
             }).always(function () {

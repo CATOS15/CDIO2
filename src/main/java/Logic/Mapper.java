@@ -14,6 +14,8 @@ public class Mapper {
         static final String password = "password";
         static final String cpr = "cpr";
         static final String roles = "roles";
+
+        static final String users = "users";
     }
 
     public static UserDTO mapUserDTO(String jsonString){
@@ -42,6 +44,12 @@ public class Mapper {
         jsonObject.put(Keys.cpr, userDTO.getCpr());
         jsonObject.put(Keys.password, userDTO.getPassword());
         jsonObject.put(Keys.roles, userDTO.getRoles());
+        return jsonObject.toString();
+    }
+
+    public static String mapUsersDTO(List<UserDTO> usersDTO){
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put(Keys.users, usersDTO);
         return jsonObject.toString();
     }
 }
