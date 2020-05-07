@@ -24,7 +24,6 @@ $( document ).ready(function() {
     //Loading div der ligger i bunden af index.html
     var loading = $("#loading");
 
-    var roles = $("#roles span");
     //Base api urlen
     var api_url = "api/";
 
@@ -54,6 +53,15 @@ $( document ).ready(function() {
         }
     };
 
+    var checkDTO = function (DTO) {
+        for (var key in DTO) {
+            if (!DTO[key]) {
+                alert("Udfyld venligst " + key);
+                return false;
+            }
+        }
+        return true;
+    };
     //Events
     var initEvents = function(){
         btn_go_home.click(function(){
@@ -81,12 +89,7 @@ $( document ).ready(function() {
             page_user_delete.show();
             user_delete();
         });
-        roles.click(function(){
-            if( $(this).css("font-weight") !== "700")
-                $(this).css("font-weight","700");
-            else
-                $(this).css("font-weight", "400");
-        });
+
     };
 
     //Scripts for hver side
@@ -99,7 +102,6 @@ $( document ).ready(function() {
         var response_user = $("#response_user");
         var input_username = $("#input_username");
         var btn_user_search = $("#btn_user_search");
-
         var api_user_find = function(){
             loading.show();
 
@@ -136,12 +138,8 @@ $( document ).ready(function() {
                 cpr : input_cpr.val(),
                 roles : input_role.val()
             };
-            for(var key in DTO){
-                if(!DTO[key]){
-                    alert("Udfyld venligst " + key);
-                    return;
-                }
-            }
+            if(!checkDTO(DTO))return;
+
             loading.show();
             $.ajax({
                 url: api_url + "bruger",
@@ -161,13 +159,58 @@ $( document ).ready(function() {
         });
     };
 
-    var user_edit = function(){
-        // var response_edit_user = $("#response_edit_user");
-        var input_Edit = $("#editName");
+    var user_edit = function() {
+        //current user
+        var input_selectUsername = $("#name");
+
+        //change to
+        var input_username = $("#editName");
         var input_password = $("#editPassword");
         var input_cpr = $("#editCPR");
-        var input_role = $("#editRole");
-        var btn_user_create = $("#btn_user_update");
+        var roller = [];
+
+        var btn_user_edit = $("#btn_user_edit");
+        var response_edit_user = $("#response_edit_user");
+
+        var roles = $("#editRole span");
+        roles.click(function () {
+
+            if ($(this).css("font-weight") !== "700") {
+                $(this).css("font-weight", "700");
+                roller.push($(this).text());
+            } else {
+                $(this).css("font-weight", "400");
+
+                roller.splice(roller.indexOf($(this).text()));
+            }
+
+        });
+        var api_edit_user = function () {
+            var DTO = {
+                username: input_username.val(),
+                password: input_password.val(),
+                cpr: input_cpr.val(),
+                roles: roller
+            };
+            if(!checkDTO(DTO))return;
+
+            loading.show();
+            $.ajax({
+                url: api_url + "bruger/" + input_selectUsername.val(),
+                type: "PUT",
+                data: JSON.stringify(DTO) //Bliver blot sendt som en string og så konventeret i backend
+            }).done(function (resp) {
+                response_edit_user.html(resp);
+            }).fail(function (resp) {
+                showError(resp);
+            }).always(function () {
+                loading.hide();
+            });
+        };
+
+        btn_user_edit.click(function () {
+            api_edit_user();
+        });
     };
 
     var user_delete = function(){

@@ -79,23 +79,30 @@
 
         <div id="user_edit" style="display: none;">
             <div class="leftContent">
+                <div><b>Indsæt ønskede bruger der skal ændres</b></div>
+                <label>Indsæt brugernavn</label>
+                <input type="text" id="name">
+
                 <div><b>Indsæt ønskede værdier der skal ændres</b></div>
                 <label>Indsæt brugernavn</label>
-                <input type="text" id="updateName">
+                <input type="text" id="editName">
                 <label>Indsæt password</label>
-                <input type="password" id="updatePassword">
+                <input type="password" id="editPassword">
                 <label>Indsæt CPR</label>
-                <input type="text" id="updateCPR">
+                <input type="text" id="editCPR">
 
                 <label>Indsæt rolle</label>
                 <br>
-                <div id="roles">
+                <div id="editRole">
                     <span>Admin</span>
                     <span>Pharmaceut</span>
                     <span>Produktionsleder</span>
                     <span>Laborant</span>
                 </div>
-                <button id="btn_user_update" type="submit" value="submit" style="float:right;">Opdater bruger</button>
+                <button id="btn_user_edit" type="submit" value="submit" style="float:right;">Opdater bruger</button>
+            </div>
+            <div class="rightContent">
+                <div id="response_edit_user"></div>
             </div>
         </div>
 

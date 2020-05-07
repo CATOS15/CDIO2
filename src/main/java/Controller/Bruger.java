@@ -68,7 +68,7 @@ public class Bruger {
             UserDTO oldUserDTO = iUserDAO.getUser(username);
             userDTO.setUserId(oldUserDTO.getUserId());
             iUserDAO.updateUser(userDTO);
-            return "Brugeren " + userDTO.getUserName() + " blev redigeret med success!";
+            return "Brugeren " + username + " blev redigeret med success!";
         }
         catch (Exception e){
             return "Fejl i backend: " + e.toString();
