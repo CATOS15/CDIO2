@@ -13,17 +13,6 @@ public class UserDAO_3_Database implements IUserDAO {
         connectToSql();
     }
 
-    public UserDTO getUser(int userId){
-        try{
-            ResultSet userResultSet = executeSelect("SELECT * FROM users WHERE id=\"" + userId + "\";");
-            if(userResultSet.next()) return getUserDB(userResultSet);
-
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     public UserDTO getUser(String username) {
         try{
             ResultSet userResultSet = executeSelect("SELECT * FROM users WHERE username='" + username + "';");
@@ -70,7 +59,7 @@ public class UserDAO_3_Database implements IUserDAO {
     }
 
 
-    public void deleteUser(int userId) throws DALException {
+    public void deleteUser(String userId) throws DALException {
         try{
             executeUpdate("DELETE FROM userroles WHERE userid=\"" + userId + "\";");
             executeUpdate("DELETE FROM users WHERE id=\"" + userId + "\";");

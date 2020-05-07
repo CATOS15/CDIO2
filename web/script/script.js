@@ -148,14 +148,7 @@ $( document ).ready(function() {
                 type: "POST",
                 data: JSON.stringify(DTO) //Bliver blot sendt som en string og så konventeret i backend
             }).done(function(resp) {
-                var data = JSON.parse(resp);
-                var html = "<b>Dataen er blevet modtaget i backend og sendt tilbage igen: </b><br />";
-                html += "USERNAME: " + data.username + "<br />";
-                html += "PASSWORD: " + data.password + "<br />";
-                html += "CPR: " + data.cpr + "<br />";
-                html += "ROLLER: " + data.roles + "<br />";
-
-                response_create_user.html(html);
+                response_create_user.html(resp);
             }).fail(function(resp){
                 showError(resp);
             }).always(function(){
