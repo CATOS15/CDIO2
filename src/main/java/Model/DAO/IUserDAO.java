@@ -6,12 +6,11 @@ import java.util.List;
 
 public interface IUserDAO {
 
-    UserDTO getUser(int userId) throws DALException;
     UserDTO getUser(String username) throws DALException;
     List<UserDTO> getUserList() throws DALException;
     void createUser(UserDTO user) throws DALException;
     void updateUser(UserDTO user) throws DALException;
-    void deleteUser(int userId) throws DALException;
+    void deleteUser(String userId) throws DALException;
 
     class DALException extends Exception {
         private static final long serialVersionUID = 7355418246336739229L;
