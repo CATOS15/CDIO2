@@ -171,10 +171,29 @@ $( document ).ready(function() {
     };
 
     var user_delete = function(){
-        // var input_delete = $("#deleteName");
-        var input_name = $("#deleteName");
-        var input_ID = $("#deleteID");
+        // Variables
+        var input_username = $("#deleteName");
+        var btn_user_delete = $("#btn_user_delete");
+        var response_delete_user = $("#response_delete_user");
+
+        var api_delete_user = function() {
+            $.ajax({
+                url: api_url + "bruger/" + input_username.val(),
+                type: "DELETE",
+            }).done(function (resp) {
+                response_delete_user.html(resp);
+            }).fail(function (resp) {
+                showError(resp);
+            }).always(function () {
+                loading.hide();
+            })
+        };
+
+        btn_user_delete.click(function (){
+        api_delete_user();
+        });
     };
+
 
     //Inititialize scriptet
     init();
