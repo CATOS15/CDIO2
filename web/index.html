@@ -13,6 +13,7 @@
     <!-- Vores udviklede stylesheet og scripts -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <script type="text/javascript" src ="script/script.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -32,25 +33,26 @@
     <div class="content">
 
         <div id="home" style="display: none;">
-            <div><b> Dette er et billede af gruppen</b></div>
-            <img src="Pictures/Gruppen.PNG" alt="Gruppen">
+            <div class="animation" id="frontpage_title">CDIO 2</div>
+            <div class="animation" >Bruger-Administrationsmodul</div>
+            <img class="animation" src="Pictures/Gruppen.PNG" alt="Gruppen">
         </div>
 
         <div id="user_find" style="display: none;">
-            <div class="leftContent">
+            <div class="leftContent, box">
                 <b>Find bruger her</b>
                 <div style="margin: 10px;">
                     <label for="input_username">Brugernavn:</label> <input id="input_username" type="text" /><br />
                     <button id="btn_user_search" style="float:right;">Søg</button>
                 </div>
             </div>
-            <div class="rightContent">
+            <div class="rightContent, box">
                 <div id="response_user"></div>
             </div>
         </div>
 
         <div id="user_create" style="display: none;">
-            <div class="leftContent">
+            <div class="leftContent, box">
                 <div><b>Oprettelse af ny bruger</b></div>
 
                 <label>Indsæt brugernavn</label>
@@ -69,13 +71,13 @@
                 </div>
                 <button id="btn_user_create" type="submit" value="submit" style="float:right;">Opret bruger</button>
             </div>
-            <div class="rightContent">
+            <div class="rightContent, box">
                 <div id="response_create_user"></div>
             </div>
         </div>
 
         <div id="user_edit" style="display: none;">
-            <div class="leftContent">
+            <div class="leftContent, box">
                 <div><b>Indsæt ønskede bruger der skal ændres</b></div>
                 <label>Indsæt brugernavn</label>
                 <input type="text" id="name">
@@ -98,20 +100,20 @@
                 </div>
                 <button id="btn_user_edit" type="submit" value="submit" style="float:right;">Opdater bruger</button>
             </div>
-            <div class="rightContent">
+            <div class="rightContent, box">
                 <div id="response_edit_user"></div>
             </div>
         </div>
 
         <div id="user_delete" style="display: none;">
-            <div class="leftContent">
+            <div class="leftContent, box">
                 <div><b>Slet bruger med Navn</b></div>
                 <div>
-                    <input id="deleteName" type="text"  placeholder="Indtast brugernavn"  /><br />
+                    <input type="text" id="deleteName"  placeholder="Indtast brugernavn"  /><br />
                     <button id="btn_user_delete" style="float:right; width: 170px">Slet bruger</button>
                 </div>
             </div>
-            <div class="rightContent">
+            <div class="rightContent, box">
                 <div id="response_delete_user"></div>
             </div>
 
