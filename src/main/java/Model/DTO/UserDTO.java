@@ -2,9 +2,10 @@ package Model.DTO;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class UserDTO{
-    private int	id;
+    private String id;
     private String username;
     private String ini;
     private List<String> roles;
@@ -15,11 +16,20 @@ public class UserDTO{
         this.roles = new ArrayList<>();
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return id;
     }
-    public void setUserId(int id) {
+    public void setUserId(String id) throws Exception {
+        if(this.id != null){
+            throw new Exception("ID er allerede sat på " + username);
+        }
         this.id = id;
+    }
+    public void generateUserId() throws Exception {
+        if(this.id != null){
+            throw new Exception("ID er allerede sat på " + username);
+        }
+        this.id = UUID.randomUUID().toString();
     }
     public String getUserName() {
         return username;

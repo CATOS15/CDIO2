@@ -15,7 +15,7 @@ public class UserDAO_3_Database implements IUserDAO {
 
     public UserDTO getUser(int userId){
         try{
-            ResultSet userResultSet = executeSelect("SELECT * FROM users WHERE id=" + userId + ";");
+            ResultSet userResultSet = executeSelect("SELECT * FROM users WHERE id=\"" + userId + "\";");
             if(userResultSet.next()) return getUserDB(userResultSet);
 
         } catch (SQLException e){
@@ -50,7 +50,7 @@ public class UserDAO_3_Database implements IUserDAO {
 
     public void createUser(UserDTO user) throws DALException {
         try{
-            executeUpdate("INSERT INTO users VALUES ("+user.getUserId()+", \""+user.getUserName()+"\", \""+user.getPassword()+"\", \""+user.getCpr()+"\");");
+            executeUpdate("INSERT INTO users VALUES (\""+user.getUserId()+"\", \""+user.getUserName()+"\", \""+user.getPassword()+"\", \""+user.getCpr()+"\");");
             updateUserRolesDB(user);
         } catch (SQLException e){
             e.printStackTrace();
@@ -60,8 +60,8 @@ public class UserDAO_3_Database implements IUserDAO {
 
     public void updateUser(UserDTO user) throws DALException {
         try{
-            executeUpdate("UPDATE users SET username=\""+user.getUserName()+"\", password=\""+user.getPassword()+"\", cprnummer=\""+user.getCpr()+"\" WHERE id="+user.getUserId()+";");
-            executeUpdate("DELETE FROM userroles WHERE userid=" + user.getUserId() + ";");
+            executeUpdate("UPDATE users SET username=\""+user.getUserName()+"\", password=\""+user.getPassword()+"\", cprnummer=\""+user.getCpr()+"\" WHERE id=\""+user.getUserId()+"\";");
+            executeUpdate("DELETE FROM userroles WHERE userid=\"" + user.getUserId() + "\";");
             updateUserRolesDB(user);
         } catch (SQLException e){
             e.printStackTrace();
@@ -72,8 +72,8 @@ public class UserDAO_3_Database implements IUserDAO {
 
     public void deleteUser(int userId) throws DALException {
         try{
-            executeUpdate("DELETE FROM userroles WHERE userid=" + userId + ";");
-            executeUpdate("DELETE FROM users WHERE id=" + userId + ";");
+            executeUpdate("DELETE FROM userroles WHERE userid=\"" + userId + "\";");
+            executeUpdate("DELETE FROM users WHERE id=\"" + userId + "\";");
         } catch (SQLException e){
             e.printStackTrace();
             throw new DALException("Brugeren kunne ikke slettes");
@@ -84,19 +84,19 @@ public class UserDAO_3_Database implements IUserDAO {
     private UserDTO getUserDB(ResultSet userResultSet){
         try {
             UserDTO user = new UserDTO();
-            user.setUserId(userResultSet.getInt(1));
+            user.setUserId(userResultSet.getString(1));
             user.setUserName(userResultSet.getString(2));
             user.setPassword(userResultSet.getString(3));
             user.setCpr(userResultSet.getString(4));
 
-            ResultSet rolesResultSet = executeSelect("SELECT username, rolename FROM roles, userroles, users WHERE roles.id = userroles.roleid AND users.id = userroles.userid AND users.id = " + user.getUserId() + ";");
+            ResultSet rolesResultSet = executeSelect("SELECT username, rolename FROM roles, userroles, users WHERE roles.id = userroles.roleid AND users.id = userroles.userid AND users.id = \"" + user.getUserId() + "\";");
             List<String> roles = new ArrayList<>();
             while(rolesResultSet.next()){
                 roles.add(rolesResultSet.getString(2));
             }
             user.setRoles(roles);
             return user;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
@@ -106,7 +106,7 @@ public class UserDAO_3_Database implements IUserDAO {
         for (String role: user.getRoles()) {
             ResultSet resultSet = executeSelect("SELECT id FROM roles WHERE rolename='" + role + "';");
             if(resultSet.next()) {
-                executeUpdate("INSERT INTO userroles VALUES (" + user.getUserId() + ", "+resultSet.getInt(1)+");");
+                executeUpdate("INSERT INTO userroles VALUES (\"" + user.getUserId() + "\", \""+resultSet.getString(1)+"\");");
             }
             else {
                 throw new DALException("Rollen " + role + " eksisterer ikke i DB");

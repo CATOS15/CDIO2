@@ -158,7 +158,7 @@ $( document ).ready(function() {
 
         btn_user_create.click(function () {
             api_create_user();
-        })
+        });
     };
 
     var user_edit = function(){

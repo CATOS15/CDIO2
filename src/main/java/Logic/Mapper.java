@@ -7,15 +7,15 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-class Keys{
-    //Det er vigtigt at disse nøgler matcher dem som bliver sendt fra frontend
-    static final String username = "username";
-    static final String password = "password";
-    static final String cpr = "cpr";
-    static final String roles = "roles";
-}
-
 public class Mapper {
+    private static class Keys{
+        //Det er vigtigt at disse nøgler matcher dem som bliver sendt fra frontend
+        static final String username = "username";
+        static final String password = "password";
+        static final String cpr = "cpr";
+        static final String roles = "roles";
+    }
+
     public static UserDTO mapUserDTO(String jsonString){
         JSONObject jsonObject = new JSONObject(jsonString);
         List<String> roller = new ArrayList<>();

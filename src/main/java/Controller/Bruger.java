@@ -25,6 +25,17 @@ public class Bruger {
     }
 
     @GET
+    public String getBrugerer() {
+        try {
+            //UserDTO user = iUserDAO.getUsers();
+            return "kat";
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @GET
     @Path("{username}")
     public String getBruger(@PathParam("username") String username) {
         try {
@@ -40,6 +51,8 @@ public class Bruger {
     public String createUser(String JSON_userDTO) {
         try{
             UserDTO userDTO = Mapper.mapUserDTO(JSON_userDTO);
+            userDTO.generateUserId();
+            iUserDAO.createUser(userDTO);
             return Mapper.mapUserDTO(userDTO);
         }
         catch (Exception e){
