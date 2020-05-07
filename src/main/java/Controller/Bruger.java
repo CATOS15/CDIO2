@@ -62,7 +62,7 @@ public class Bruger {
 
     @PUT
     @Path("{username}")
-    public String editUser(String username, String JSON_userDTO) {
+    public String editUser(@PathParam("username") String username, String JSON_userDTO) {
         try{
             UserDTO userDTO = Mapper.mapUserDTO(JSON_userDTO);
             UserDTO oldUserDTO = iUserDAO.getUser(username);
@@ -77,7 +77,7 @@ public class Bruger {
 
     @DELETE
     @Path("{username}")
-    public String deleteUser(String username) {
+    public String deleteUser(@PathParam("username") String username) {
         try{
             UserDTO oldUserDTO = iUserDAO.getUser(username);
             iUserDAO.deleteUser(oldUserDTO.getUserId());
